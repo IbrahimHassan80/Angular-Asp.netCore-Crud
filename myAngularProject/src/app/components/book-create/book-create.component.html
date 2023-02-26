@@ -1,0 +1,30 @@
+<div *ngIf="book" class="container">
+    <h1>book-create</h1>
+    <h2> {{book.title}} </h2>
+    <form #form="ngForm" [formGroup]="registerform" (ngSubmit)="createBook(book)">
+      <div>
+          Title:
+          <input formControlName="title" name="title" class="form-control" [(ngModel)]="book.title" placeholder="title">
+          <span class="errorr" *ngIf="title?.invalid && title?.touched">Title is Required</span>
+        </div>
+      <div>
+          Author
+          <input formControlName="author" name="author" class="form-control" [(ngModel)]="book.author" placeholder="Author">
+          <span class="errorr" *ngIf="author?.invalid && author?.touched">Author is Required</span>
+      </div>
+      <div>
+          NumberOfPages
+          <input formControlName="numberOfPages" name="numberOfPages" class="form-control" [(ngModel)]="book.numberOfPages" placeholder="NumberOfPages">
+          <span class="errorr" *ngIf="numberOfPages?.invalid && numberOfPages?.touched">numberOfPages is Required</span>
+      </div>
+      <div>
+          publishedAt
+          <input class="form-control" [(ngModel)]="book.publishedAt" >
+      </div>
+      <div>
+        <span class="errorr" *ngIf="!valid">Information Is InValid</span>
+      </div>
+      
+      <button class="btn btn-primary">Create Book</button>
+    </form>
+  </div>

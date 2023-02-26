@@ -1,0 +1,41 @@
+<div class="container">
+ <div class="row">
+    <div class="col-md-4 py-3">
+        <form #form="ngForm" [formGroup]="registerform" (ngSubmit)="onSubmit()">
+            <div class="form-group">
+              <label for="formGroupExampleInput">Name</label>
+              <input formControlName="name" type="text" class="form-control" placeholder="Name" name="name" [(ngModel)]="author.name">
+              <span class="errorr" *ngIf="name?.invalid && name?.touched">name is Required</span>
+            </div>
+
+            <div class="form-group">
+              <label for="formGroupExampleInput2">Category</label>
+              <input formControlName="category" type="text" class="form-control" name="category" placeholder="Category" [(ngModel)]="author.category">
+              <span class="errorr" *ngIf="category?.invalid && name?.touched">category is Required</span>
+            </div>
+
+            <div class="form-group">
+                <label for="formGroupExampleInput2">Age</label>
+                <input formControlName="age" type="text" class="form-control" name="age" placeholder="Age" [(ngModel)]="author.age">
+                <span class="errorr" *ngIf="age?.invalid && name?.touched">age is Required</span>
+              </div>
+              <span class="errorr" *ngIf="!valid">Information Is InValid</span>
+
+            <div class="form-group">
+                <button *ngIf="author.id">Save Edit</button>
+                <button *ngIf="author.id == null">Create</button>
+            </div>
+          </form>
+    </div>
+
+    <!-- view existing authors -->
+      <div  class="col-md-4 py-4">
+        <div  *ngFor="let author of authors" class="alert alert-primary" role="alert">
+            {{author.name}} | {{author.age}} | {{author.category}}
+             <a (click)="deleteAuthor(author.id)" class="btn btn-danger"> Delete </a>
+             <button (click)="populateForm(author)" class="btn btn-primary">Edit</button> 
+          </div>
+      </div>
+ 
+ </div>
+</div>

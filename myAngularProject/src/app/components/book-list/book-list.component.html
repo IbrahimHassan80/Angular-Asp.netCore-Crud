@@ -1,0 +1,51 @@
+<div class="container">
+       <div class="row col-md-6">
+     <table class="table">
+       <thead>
+       <tr>
+           <th>title</th>
+           <th>Author</th>
+           <th>number of pages</th>
+           <th>Date</th>
+           <th>operator</th>
+       </tr>
+       </thead>
+       <tbody>
+           <tr *ngFor="let book of books">
+               <td>{{ book.title }}</td>
+               <td>{{ book.author }}</td>
+               <td>{{ book.numberOfPages }}</td>
+               <td>{{ book.publishedAt }}</td>
+               <td>
+                   <button class="btn btn-primary" (click)="editBook(book)">Edit</button>
+                   <button class="btn btn-danger" (click)="deleteBook(book)">Delete</button> 
+                </td>
+           </tr>
+       </tbody>
+   </table>
+    </div>
+
+   <!-- Edit Book -->
+
+   <div *ngIf="bookToEdit">
+    <h2> {{bookToEdit.title}} </h2>
+      <div>
+          Title:
+          <input [(ngModel)]="bookToEdit.title" placeholder="title">
+      </div>
+      <div>
+          Author
+          <input [(ngModel)]="bookToEdit.author" placeholder="Author">
+      </div>
+      <div>
+          NumberOfPages
+          <input [(ngModel)]="bookToEdit.numberOfPages" placeholder="NumberOfPages">
+      </div>
+      <div>
+          publishedAt
+          <input [(ngModel)]="bookToEdit.publishedAt" placeholder="publishedAt">
+      </div>
+
+      <button (click)="updateBook(bookToEdit)" *ngIf="bookToEdit.id">Save Edit</button>
+  </div>
+</div>
