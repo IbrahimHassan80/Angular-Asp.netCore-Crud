@@ -1,8 +1,10 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
-import { empty } from 'rxjs';
 import { Book } from 'src/app/models/book.model';
 import { BookService } from 'src/app/services/book.service';
 import { FormControl,FormGroup,Validators } from '@angular/forms';
+import { PrimeNGConfig } from 'primeng/api';
+import { ButtonModule } from 'primeng/button';
+
 
 @Component({
   selector: 'app-book-create',
@@ -15,9 +17,10 @@ export class BookCreateComponent implements OnInit{
 
   ngOnInit(): void {  this.book = new Book();  }
 
-  constructor(private bookservice: BookService) {}
-
-  // validation //
+  constructor(private bookservice: BookService) 
+  {  }
+  
+//============ Validation Form ==========================//
   valid:boolean = true;
 
   registerform = new FormGroup({
@@ -35,19 +38,31 @@ export class BookCreateComponent implements OnInit{
   get numberOfPages(){
     return this.registerform.get('numberOfPages')
   }
-  ///////////----------------------/////////////
+  // ====================================================//
   
-  createBook(book : Book) { 
+  onSubmit(book : Book) { 
     if(this.registerform.invalid){
       this.valid = false;
       console.log('InValid Information');
+     } else {
+      this.load();
+      this.bookservice.createBook(book)
+      .subscribe( resp => 
+        {
+         this.book = {
+          author : '',
+          title : '',
+        }});
      }
-    this.bookservice.createBook(book)
-    .subscribe( resp => 
-      {
-       this.book = {
-        author : '',
-        title : '',
-      }});
    }
+   // Loading Button //
+   loading: boolean = false;
+    load() {
+        this.loading = true;
+
+        setTimeout(() => {
+            this.loading = false
+        }, 1500);
+    }
+    //  -------------- //
 }

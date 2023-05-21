@@ -11,13 +11,13 @@
             <div class="form-group">
               <label for="formGroupExampleInput2">Category</label>
               <input formControlName="category" type="text" class="form-control" name="category" placeholder="Category" [(ngModel)]="author.category">
-              <span class="errorr" *ngIf="category?.invalid && name?.touched">category is Required</span>
+              <span class="errorr" *ngIf="category?.invalid && category?.touched">category is Required</span>
             </div>
 
             <div class="form-group">
                 <label for="formGroupExampleInput2">Age</label>
                 <input formControlName="age" type="text" class="form-control" name="age" placeholder="Age" [(ngModel)]="author.age">
-                <span class="errorr" *ngIf="age?.invalid && name?.touched">age is Required</span>
+                <span class="errorr" *ngIf="age?.invalid && age?.touched">age is Required</span>
               </div>
               <span class="errorr" *ngIf="!valid">Information Is InValid</span>
 
@@ -33,9 +33,8 @@
         <div  *ngFor="let author of authors" class="alert alert-primary" role="alert">
             {{author.name}} | {{author.age}} | {{author.category}}
              <a (click)="deleteAuthor(author.id)" class="btn btn-danger"> Delete </a>
-             <button (click)="populateForm(author)" class="btn btn-primary">Edit</button> 
+             <a (click)="populateForm(author)" class="btn btn-primary">Edit</a> 
           </div>
       </div>
- 
  </div>
 </div>

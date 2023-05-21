@@ -1,7 +1,6 @@
 <div *ngIf="book" class="container">
     <h1>book-create</h1>
-    <h2> {{book.title}} </h2>
-    <form #form="ngForm" [formGroup]="registerform" (ngSubmit)="createBook(book)">
+    <form #form="ngForm" [formGroup]="registerform" (ngSubmit)="onSubmit(book)">
       <div>
           Title:
           <input formControlName="title" name="title" class="form-control" [(ngModel)]="book.title" placeholder="title">
@@ -17,14 +16,12 @@
           <input formControlName="numberOfPages" name="numberOfPages" class="form-control" [(ngModel)]="book.numberOfPages" placeholder="NumberOfPages">
           <span class="errorr" *ngIf="numberOfPages?.invalid && numberOfPages?.touched">numberOfPages is Required</span>
       </div>
-      <div>
-          publishedAt
-          <input class="form-control" [(ngModel)]="book.publishedAt" >
-      </div>
+
       <div>
         <span class="errorr" *ngIf="!valid">Information Is InValid</span>
       </div>
       
-      <button class="btn btn-primary">Create Book</button>
+      <!-- <button class="btn btn-primary">Create Book</button> -->
+      <button pButton pRipple label="Submit" [loading]="loading" class="p-button-success"></button>
     </form>
   </div>

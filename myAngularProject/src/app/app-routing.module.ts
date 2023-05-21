@@ -4,6 +4,7 @@ import { AuthorsItemsComponent } from './components/authors-items/authors-items.
 import { BookCreateComponent } from './components/book-create/book-create.component';
 import { BookListComponent } from './components/book-list/book-list.component';
 import { HomeComponent } from './components/home/home.component';
+import { ModalComponent } from './components/modal/modal.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 
 const routes: Routes = [
@@ -25,6 +26,11 @@ const routes: Routes = [
   {
     path : 'author',
     component :  AuthorsItemsComponent,
+    pathMatch : 'full'
+  },
+  {
+    path : 'modal',
+    component :  ModalComponent,
     pathMatch : 'full'
   },
   {

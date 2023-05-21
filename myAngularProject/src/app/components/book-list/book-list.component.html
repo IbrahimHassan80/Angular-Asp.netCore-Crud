@@ -10,42 +10,61 @@
            <th>operator</th>
        </tr>
        </thead>
-       <tbody>
+      <tbody>
            <tr *ngFor="let book of books">
                <td>{{ book.title }}</td>
                <td>{{ book.author }}</td>
                <td>{{ book.numberOfPages }}</td>
                <td>{{ book.publishedAt }}</td>
                <td>
-                   <button class="btn btn-primary" (click)="editBook(book)">Edit</button>
+                   <button class="btn btn-primary" (click)="showDialog(book)" label="Edit">Edit</button>
                    <button class="btn btn-danger" (click)="deleteBook(book)">Delete</button> 
                 </td>
            </tr>
-       </tbody>
-   </table>
+        </tbody>
+      </table>
     </div>
-
-   <!-- Edit Book -->
-
-   <div *ngIf="bookToEdit">
-    <h2> {{bookToEdit.title}} </h2>
-      <div>
-          Title:
-          <input [(ngModel)]="bookToEdit.title" placeholder="title">
-      </div>
-      <div>
-          Author
-          <input [(ngModel)]="bookToEdit.author" placeholder="Author">
-      </div>
-      <div>
-          NumberOfPages
-          <input [(ngModel)]="bookToEdit.numberOfPages" placeholder="NumberOfPages">
-      </div>
-      <div>
-          publishedAt
-          <input [(ngModel)]="bookToEdit.publishedAt" placeholder="publishedAt">
-      </div>
-
-      <button (click)="updateBook(bookToEdit)" *ngIf="bookToEdit.id">Save Edit</button>
-  </div>
 </div>
+
+<!-- ------- Edit PopUp ----------- -->
+
+  <p-dialog
+      *ngIf="bookToEdit"
+      header="Edit Book"
+      [(visible)]="BasicShow"
+      [style]="{width: '30vw'}"
+      [draggable]="false" 
+      [resizable]="false">
+
+        <div class="modal-body">
+          <div>
+            <h2> {{bookToEdit.title}} </h2>
+             <div>
+                 Title:
+                 <input class="form-control" [(ngModel)]="bookToEdit.title" placeholder="title">
+             </div>
+             <div>
+                 Author
+                 <input class="form-control" [(ngModel)]="bookToEdit.author" placeholder="Author">
+             </div>
+             <div>
+                 NumberOfPages
+                 <input class="form-control" [(ngModel)]="bookToEdit.numberOfPages" placeholder="NumberOfPages">
+             </div> 
+         </div>
+        </div>
+      
+      <ng-template pTemplate="footer">
+          <p-button
+              label="Accept"
+              (click)="updateBook(bookToEdit)"
+              styleClass="p-button-success">
+          </p-button>
+            
+          <p-button
+              (click)="closePopUp()"
+              label="Cancel"
+              styleClass="p-button-danger">
+          </p-button>
+      </ng-template>
+  </p-dialog>

@@ -6,5 +6,7 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  
+    bodyText = 'This text can be updated in modal 1';
+
+    constructor() { }
 }

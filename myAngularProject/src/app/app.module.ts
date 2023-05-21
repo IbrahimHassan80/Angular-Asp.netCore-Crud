@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule } from '@angular/common/http';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -12,6 +13,9 @@ import { HomeComponent } from './components/home/home.component';
 import { NotFoundPageComponent } from './components/not-found-page/not-found-page.component';
 import { AuthorsItemsComponent } from './components/authors-items/authors-items.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ModalComponent } from './components/modal/modal.component';
+import { DialogModule } from 'primeng/dialog';
+import { ButtonModule } from 'primeng/button';
 
 @NgModule({
   declarations: [
@@ -20,16 +24,22 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     BookCreateComponent,
     HomeComponent,
     NotFoundPageComponent,
-    AuthorsItemsComponent
+    AuthorsItemsComponent,
+    ModalComponent,
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
+    DialogModule,
+    ButtonModule,
     AppRoutingModule,
     HttpClientModule,
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+  
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  entryComponents:[BookCreateComponent]
 })
 export class AppModule { }

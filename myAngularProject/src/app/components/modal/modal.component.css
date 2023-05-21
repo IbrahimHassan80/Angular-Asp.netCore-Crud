@@ -1,0 +1,15 @@
+body {
+    
+}
+.modal {
+ color: blue; 
+ transition: all 0.3s ease;
+ opacity: 1;  
+}
+#md {
+    opacity: 1;
+    transition: opacity 1s;
+  }
+  #md.hide {
+    opacity: 0;
+  }
